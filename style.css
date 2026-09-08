@@ -1,0 +1,708 @@
+:root {
+  --paper: #fffaf4;
+  --paper-soft: #fdf1e8;
+
+  --wine: #793f4b;
+  --wine-dark: #56303a;
+  --rose: #d98f93;
+  --rose-light: #efb9ad;
+  --gold: #c69a5c;
+
+  --text: #4d3438;
+  --text-soft: #80666a;
+  --border: rgba(121, 63, 75, 0.16);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  position: relative;
+
+  min-height: 100svh;
+  margin: 0;
+  padding: 24px;
+
+  display: grid;
+  place-items: center;
+
+  overflow-x: hidden;
+
+  color: var(--text);
+
+  background:
+    radial-gradient(
+      circle at 15% 15%,
+      rgba(255, 245, 221, 0.95),
+      transparent 38%
+    ),
+    radial-gradient(
+      circle at 85% 80%,
+      rgba(207, 119, 126, 0.38),
+      transparent 42%
+    ),
+    linear-gradient(
+      145deg,
+      #f3c5b5,
+      #eeb4b7 48%,
+      #c9838d
+    );
+}
+
+/* Weicher Lichtschein */
+body::before {
+  content: "";
+
+  position: fixed;
+  inset: 0;
+
+  background:
+    radial-gradient(
+      circle at 75% 12%,
+      rgba(255, 255, 255, 0.55),
+      transparent 24%
+    ),
+    radial-gradient(
+      circle at 15% 85%,
+      rgba(255, 225, 194, 0.35),
+      transparent 25%
+    );
+
+  pointer-events: none;
+}
+
+/* Die zentrale Karte */
+main {
+  position: relative;
+  z-index: 1;
+
+  width: 100%;
+  max-width: 460px;
+  padding: 38px 30px;
+
+  overflow: hidden;
+
+  text-align: center;
+
+  background: rgba(255, 250, 244, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.72);
+  border-radius: 28px;
+
+  box-shadow:
+    0 30px 80px rgba(87, 42, 49, 0.22),
+    inset 0 1px 0 rgba(255, 255, 255, 0.8);
+
+  backdrop-filter: blur(18px);
+}
+
+/* Kleine Statuszeile */
+.questStatus {
+  display: flex;
+  justify-content: space-between;
+
+  margin-bottom: 12px;
+
+  color: var(--wine);
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.13em;
+}
+
+/* Fortschrittsanzeige */
+.progressTrack {
+  height: 3px;
+  margin-bottom: 34px;
+
+  overflow: hidden;
+
+  background: #ead8d0;
+  border-radius: 999px;
+}
+
+.progressFill {
+  width: 25%;
+  height: 100%;
+
+  background: linear-gradient(
+    90deg,
+    var(--gold),
+    var(--rose)
+  );
+
+  border-radius: inherit;
+  transition: width 400ms ease;
+}
+
+/* Einzelne Seiten */
+.screen {
+  display: none;
+}
+
+.screen.active {
+  display: block;
+  animation: appear 500ms ease;
+}
+
+/* Kleine Überschrift */
+.eyebrow {
+  margin: 0 0 18px;
+
+  color: var(--wine);
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.17em;
+}
+
+/* Große Überschriften */
+h1,
+h2 {
+  margin: 0 0 28px;
+
+  color: var(--wine-dark);
+  font-family:
+    "Iowan Old Style",
+    "Palatino Linotype",
+    "Book Antiqua",
+    Georgia,
+    serif;
+  font-size: clamp(32px, 8vw, 46px);
+  font-weight: 500;
+  line-height: 1.08;
+  letter-spacing: -0.025em;
+}
+
+h2 {
+  font-size: clamp(28px, 7vw, 38px);
+}
+
+/* Erklärender Text */
+.description {
+  margin: -10px 0 30px;
+
+  color: var(--text-soft);
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+/* Grunddesign aller Buttons */
+button {
+  width: 100%;
+  padding: 16px 22px;
+
+  color: white;
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+  font-size: 15px;
+  font-weight: 650;
+
+  background: linear-gradient(
+    135deg,
+    var(--wine),
+    #a95f69
+  );
+
+  border: 0;
+  border-radius: 14px;
+
+  cursor: pointer;
+
+  box-shadow: 0 12px 28px rgba(121, 63, 75, 0.22);
+
+  transition:
+    transform 180ms ease,
+    box-shadow 180ms ease,
+    background 180ms ease;
+}
+
+button:hover {
+  transform: translateY(-2px);
+
+  box-shadow: 0 16px 34px rgba(121, 63, 75, 0.3);
+}
+
+button:active {
+  transform: translateY(0);
+}
+
+button:focus-visible {
+  outline: 3px solid rgba(121, 63, 75, 0.35);
+  outline-offset: 4px;
+}
+
+button:disabled {
+  opacity: 0.42;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+/* Ja- und Nein-Buttons */
+.buttonGroup {
+  display: grid;
+  gap: 12px;
+}
+
+.secondaryButton {
+  margin-top: 12px;
+
+  color: var(--wine);
+
+  background: transparent;
+  border: 1px solid rgba(121, 63, 75, 0.25);
+
+  box-shadow: none;
+}
+
+.buttonGroup .secondaryButton {
+  margin-top: 0;
+}
+
+.secondaryButton:hover {
+  background: rgba(121, 63, 75, 0.06);
+  box-shadow: none;
+}
+
+/* Schlichter Zurück-Button */
+.textButton {
+  width: auto;
+  margin-top: 20px;
+  padding: 8px;
+
+  color: var(--text-soft);
+  font-size: 14px;
+
+  background: transparent;
+  box-shadow: none;
+}
+
+.textButton:hover {
+  color: var(--wine);
+  box-shadow: none;
+}
+
+/* Reaktion auf „Nein“ */
+.noMessage {
+  min-height: 22px;
+  margin: 18px 0 0;
+
+  color: var(--wine);
+  font-family: Georgia, serif;
+  font-size: 15px;
+  font-style: italic;
+  line-height: 1.4;
+}
+
+/* Sidequest-Liste */
+.questList {
+  display: grid;
+  gap: 12px;
+}
+
+/* Einzelne Sidequest */
+.questCard {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+
+  padding: 18px;
+
+  color: var(--text);
+  text-align: left;
+
+  background: rgba(255, 255, 255, 0.54);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+
+  box-shadow: 0 8px 22px rgba(87, 48, 55, 0.06);
+}
+
+.questCard:hover {
+  background: rgba(255, 248, 242, 0.92);
+  border-color: rgba(121, 63, 75, 0.3);
+
+  box-shadow: 0 12px 26px rgba(87, 48, 55, 0.11);
+}
+
+.questCard::after {
+  content: "→";
+
+  margin-left: auto;
+
+  color: var(--rose);
+  font-family: Georgia, serif;
+  font-size: 21px;
+
+  transition: transform 180ms ease;
+}
+
+.questCard:hover::after {
+  transform: translateX(4px);
+}
+
+.questNumber {
+  color: var(--gold);
+  font-family: Georgia, serif;
+  font-size: 14px;
+  font-style: italic;
+}
+
+.questCard strong {
+  display: block;
+  margin-bottom: 5px;
+
+  color: var(--wine-dark);
+  font-family: Georgia, serif;
+  font-size: 17px;
+  font-weight: 600;
+}
+
+.questCard small {
+  display: block;
+
+  color: var(--text-soft);
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1.45;
+}
+
+/* Freuden- und Erfolgssymbol */
+.successMark {
+  display: grid;
+  place-items: center;
+
+  width: 64px;
+  height: 64px;
+  margin: 0 auto 24px;
+
+  color: white;
+  font-family: Georgia, serif;
+  font-size: 27px;
+  font-weight: 600;
+
+  background: linear-gradient(
+    135deg,
+    var(--gold),
+    var(--rose)
+  );
+
+  border-radius: 50%;
+
+  box-shadow: 0 14px 34px rgba(169, 95, 105, 0.26);
+}
+
+/* Kalender */
+.dateLabel {
+  display: block;
+  margin-bottom: 10px;
+
+  color: var(--wine);
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.13em;
+  text-align: left;
+}
+
+input[type="date"] {
+  width: 100%;
+  margin-bottom: 18px;
+  padding: 16px;
+
+  color: var(--text);
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+  font-size: 16px;
+
+  color-scheme: light;
+  background: rgba(255, 255, 255, 0.62);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+
+  outline: none;
+}
+
+input[type="date"]:focus {
+  border-color: var(--rose);
+
+  box-shadow: 0 0 0 3px rgba(217, 143, 147, 0.16);
+}
+
+.dateError {
+  min-height: 0;
+  margin: 0;
+
+  color: var(--wine);
+  font-size: 14px;
+}
+
+/* Ausgewähltes Datum */
+.selectedDate {
+  margin-bottom: 16px;
+  padding: 16px;
+
+  text-align: left;
+
+  background: rgba(198, 154, 92, 0.08);
+  border: 1px solid rgba(198, 154, 92, 0.24);
+  border-radius: 14px;
+}
+
+.selectedDate span {
+  display: block;
+  margin-bottom: 7px;
+
+  color: var(--gold);
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+}
+
+.selectedDate strong {
+  color: var(--wine-dark);
+  font-family: Georgia, serif;
+  font-size: 17px;
+}
+
+/* Kleine Quest-Informationen */
+.questMeta {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+
+  margin: 0 0 24px;
+}
+
+.questMeta div {
+  padding: 12px 6px;
+
+  background: rgba(255, 255, 255, 0.5);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+}
+
+.questMeta span {
+  display: block;
+  margin-bottom: 6px;
+
+  color: var(--text-soft);
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+  font-size: 9px;
+  letter-spacing: 0.09em;
+}
+
+.questMeta strong {
+  color: var(--wine-dark);
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+  font-size: 10px;
+}
+
+.acceptedDate {
+  margin: -12px 0 30px;
+
+  color: var(--gold);
+  font-family: Georgia, serif;
+  font-size: 17px;
+  font-weight: 600;
+}
+
+/* Einblendanimation */
+@keyframes appear {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Smartphone-Ansicht */
+@media (max-width: 420px) {
+  body {
+    padding: 14px;
+  }
+
+  main {
+    padding: 30px 18px;
+    border-radius: 22px;
+  }
+
+  .questCard {
+    padding: 16px 14px;
+  }
+
+  .questMeta {
+    gap: 6px;
+  }
+
+  .questMeta div {
+    padding: 11px 4px;
+  }
+}
+
+/* Gemeinsamer Polaroid-Rahmen */
+.photoFrame {
+  width: 145px;
+  margin: 0 auto 27px;
+  padding: 7px 7px 20px;
+
+  background: #ffffff;
+  border-radius: 5px;
+
+  box-shadow:
+    0 16px 35px rgba(87, 42, 49, 0.18),
+    0 2px 8px rgba(87, 42, 49, 0.1);
+
+  transition:
+    transform 250ms ease,
+    box-shadow 250ms ease;
+}
+
+.photoFrame img {
+  display: block;
+
+  width: 100%;
+  aspect-ratio: 4 / 5;
+
+  object-fit: cover;
+  object-position: center;
+
+  border-radius: 3px;
+}
+
+/* Leicht unterschiedliche Ausrichtung */
+.photoShocked {
+  transform: rotate(2deg);
+}
+
+.photoThinking {
+  transform: rotate(-2deg);
+}
+
+/* Das betende Bild ist anfangs unsichtbar */
+.photoPraying {
+  display: none;
+
+  margin: 22px auto 0;
+
+  transform: rotate(1.5deg);
+}
+
+/* Wird nach dem dritten Nein eingeblendet */
+.photoPraying.visible {
+  display: block;
+
+  animation: photoAppear 500ms ease;
+}
+
+.photoFrame:hover {
+  transform: rotate(0deg) scale(1.02);
+
+  box-shadow:
+    0 20px 42px rgba(87, 42, 49, 0.23),
+    0 3px 10px rgba(87, 42, 49, 0.1);
+}
+
+@keyframes photoAppear {
+  from {
+    opacity: 0;
+    transform: translateY(12px) rotate(1.5deg);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) rotate(1.5deg);
+  }
+}
+/* Untere Navigation der Sidequest-Auswahl */
+.choiceFooter {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  justify-content: space-between;
+
+  margin-top: 20px;
+}
+
+.choiceFooter .textButton {
+  margin: 0;
+  padding: 8px 0;
+}
+
+/* Kleine geheime vierte Option */
+.questCard.secretQuest {
+  width: auto;
+  margin: 0;
+  padding: 8px 11px;
+
+  color: var(--wine);
+  font-size: 11px;
+  font-weight: 650;
+  white-space: nowrap;
+
+  background: rgba(198, 154, 92, 0.08);
+  border: 1px dashed rgba(121, 63, 75, 0.28);
+  border-radius: 999px;
+
+  box-shadow: none;
+}
+
+/* Entfernt den großen Pfeil der normalen Karten */
+.questCard.secretQuest::after {
+  display: none;
+}
+
+.questCard.secretQuest:hover {
+  color: var(--wine-dark);
+
+  background: rgba(198, 154, 92, 0.16);
+  border-color: rgba(121, 63, 75, 0.45);
+
+  box-shadow: none;
+}

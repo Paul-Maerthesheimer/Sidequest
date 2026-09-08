@@ -1,0 +1,273 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Sidequest</title>
+
+    <link rel="stylesheet" href="style.css">
+  </head>
+
+  <body>
+    <main>
+      <!-- Statusanzeige -->
+      <div class="questStatus">
+        <span id="stepLabel">QUEST 01 / 05</span>
+        <span>LOCAL CO-OP</span>
+      </div>
+
+      <!-- Fortschrittsbalken -->
+      <div class="progressTrack">
+        <div class="progressFill" id="progressFill"></div>
+      </div>
+
+      <!-- Frage nach der gemeinsamen Sidequest -->
+      <section class="screen active" id="introScreen">
+        <p class="eyebrow">CO-OP REQUEST</p>
+
+        <h1>Lust auf eine Sidequest zu zweit?</h1>
+
+        <p class="description">
+          Eine optionale Mission mit Abenteuer, Reichtum & einem Typen von Hinge
+        </p>
+
+        <div class="buttonGroup">
+          <button id="yesButton">
+            Yesss :)
+          </button>
+
+          <button class="secondaryButton" id="noButton">
+            Ne :/
+          </button>
+        </div>
+
+        <p class="noMessage" id="noMessage"></p>
+<div
+  class="photoFrame photoPraying"
+  id="prayingPhoto"
+  aria-hidden="true"
+>
+  <img
+    src="paul_praying.jpeg"
+    alt="Paul hofft auf eine andere Antwort"
+  >
+</div>      </section>
+
+      <!-- Reaktion auf die Zusage -->
+      <section class="screen" id="celebrationScreen">
+<div class="photoFrame photoShocked">
+  <img
+    src="paul_shocked.jpeg"
+    alt="Paul freut sich über die Zusage"
+  >
+</div>
+        <p class="eyebrow">CO-OP CONFIRMED</p>
+
+        <h2>Oha! Yay :))))) </h2>
+
+        <p class="description">
+          Damit wurde offiziell eine neue Sidequest freigeschaltet.
+        </p>
+
+        <button id="showQuestsButton">
+          Sidequests ansehen
+        </button>
+      </section>
+
+      <!-- Auswahl der Sidequest -->
+      <section class="screen" id="choiceScreen">
+        <p class="eyebrow">CHOOSE YOUR PATH</p>
+
+        <h2>Welche Sidequest klingt am besten?</h2>
+
+        <div class="questList">
+          <button
+            class="questCard"
+            data-quest="Opening Move"
+          >
+            <span class="questNumber">01</span>
+
+            <span>
+              <strong>Opening Move</strong>
+              <small>
+                Basically ein Café Date
+              </small>
+            </span>
+          </button>
+
+          <button
+            class="questCard"
+            data-quest="New Map Unlocked"
+          >
+            <span class="questNumber">02</span>
+
+            <span>
+              <strong>New Map Unlocked</strong>
+              <small>
+                Zsm. eine neue Stadt erkunden
+              </small>
+            </span>
+          </button>
+
+          <button
+            class="questCard"
+            data-quest="Limited-Time Loot"
+          >
+            <span class="questNumber">03</span>
+
+            <span>
+              <strong>Limited-Time Loot</strong>
+              <small>
+                Flohmarkt am Samstag
+              </small>
+            </span>
+          </button>
+        </div>
+
+        <div class="choiceFooter">
+  <button class="textButton" id="introBackButton">
+    ← Zurück zum Anfang
+  </button>
+
+  <button
+    class="questCard secretQuest"
+    data-quest="Secret Option"
+  >
+    ✦ Secret Option
+  </button>
+</div>
+      </section>
+
+      <!-- Beschreibung der ausgewählten Sidequest -->
+<section class="screen" id="detailScreen">
+  <p class="eyebrow">SIDEQUEST DETAILS</p>
+
+  <h2 id="detailQuest"></h2>
+
+  <p class="description" id="detailDescription"></p>
+
+  <div class="questMeta">
+    <div>
+      <span>MODUS</span>
+      <strong id="detailMode"></strong>
+    </div>
+
+    <div>
+      <span>SCHWIERIGKEIT</span>
+      <strong id="detailDifficulty"></strong>
+    </div>
+
+    <div>
+      <span>ORT</span>
+      <strong id="detailLocation"></strong>
+    </div>
+  </div>
+
+  <button id="continueToDateButton">
+    Datum auswählen
+  </button>
+
+  <button class="textButton" id="detailBackButton">
+    ← Andere Sidequest ansehen
+  </button>
+</section>
+
+      <!-- Datumsauswahl -->
+      <section class="screen" id="dateScreen">
+        <p class="eyebrow">SELECT A DATE</p>
+
+<div class="photoFrame photoThinking">
+  <img
+    src="paul_thinking.jpeg"
+    alt="Paul denkt über das passende Datum nach"
+  >
+</div>
+
+<h2>Wann soll die Sidequest starten?</h2>
+
+        <p class="description">
+          Wähle ein Datum aus. Die genaue Uhrzeit können wir
+          anschließend gemeinsam festlegen.
+        </p>
+
+        <label class="dateLabel" for="dateInput">
+          START DATE
+        </label>
+
+        <input type="date" id="dateInput">
+
+        <p class="dateError" id="dateError"></p>
+
+        <button id="dateContinueButton" disabled>
+          Datum übernehmen
+        </button>
+
+        <button class="textButton" id="dateBackButton">
+          ← Zurück zur Auswahl
+        </button>
+      </section>
+
+      <!-- Zusammenfassung -->
+      <section class="screen" id="resultScreen">
+        <p class="eyebrow">QUEST BRIEFING</p>
+
+        <h2 id="selectedQuest"></h2>
+
+        <p class="description" id="selectedDescription"></p>
+
+        <div class="selectedDate">
+          <span>SELECTED DATE</span>
+          <strong id="selectedDate"></strong>
+        </div>
+
+     <div class="questMeta">
+  <div>
+    <span>MODUS</span>
+    <strong id="resultMode"></strong>
+  </div>
+
+  <div>
+    <span>SCHWIERIGKEIT</span>
+    <strong id="resultDifficulty"></strong>
+  </div>
+
+  <div>
+    <span>ORT</span>
+    <strong id="resultLocation"></strong>
+  </div>
+</div>
+
+        <button id="acceptButton">
+          Quest annehmen
+        </button>
+
+        <button class="secondaryButton" id="backButton">
+          Datum ändern
+        </button>
+      </section>
+
+      <!-- Erfolgsbildschirm -->
+      <section class="screen" id="acceptedScreen">
+        <div class="successMark">✓</div>
+
+        <p class="eyebrow">QUEST ACCEPTED</p>
+
+        <h2 id="acceptedQuest"></h2>
+
+        <p class="acceptedDate" id="acceptedDate"></p>
+
+        <p class="description">
+          Hmmm... also... ich weiß nicht wie man sich das an die Email schicken lassen kann. 
+          Alsooooo... könntest du mir bitte einen Screenshot machen & zuschicken? 🥺 👉 👈 
+        </p>
+
+        <button class="textButton" id="restartButton">
+          Quest erneut ansehen
+        </button>
+      </section>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>
