@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Sidequest</title>
+    <title>Date</title>
 
     <link rel="stylesheet" href="style.css">
   </head>
@@ -22,14 +22,20 @@
         <div class="progressFill" id="progressFill"></div>
       </div>
 
-      <!-- Frage nach der gemeinsamen Sidequest -->
+      <!-- Frage nach dem gemeinsamen Date -->
       <section class="screen active" id="introScreen">
         <p class="eyebrow">CO-OP REQUEST</p>
-
-        <h1>Lust auf eine Sidequest zu zweit?</h1>
+<div class="photoFrame">
+  <img
+    src="us.jpeg"
+    alt="Ein gemeinsames Foto"
+  >
+</div>
+<p class="greeting">Hey 송은 :)</p>
+        <h1>Lust auf ein Date?</h1>
 
         <p class="description">
-          Eine optionale Mission mit Abenteuer, Reichtum & einem Typen von Hinge
+          Eine optionale Mission mit Abenteuer, Reichtum & einem Typen von Bumble
         </p>
 
         <div class="buttonGroup">
@@ -67,19 +73,19 @@
         <h2>Oha! Yay :))))) </h2>
 
         <p class="description">
-          Damit wurde offiziell eine neue Sidequest freigeschaltet.
+          Damit wurde offiziell ein neues Treffen freigeschaltet.
         </p>
 
         <button id="showQuestsButton">
-          Sidequests ansehen
+          Ideen ansehen
         </button>
       </section>
 
-      <!-- Auswahl der Sidequest -->
+      <!-- Auswahl der Ideen -->
       <section class="screen" id="choiceScreen">
         <p class="eyebrow">CHOOSE YOUR PATH</p>
 
-        <h2>Welche Sidequest klingt am besten?</h2>
+        <h2>Welche Idee klingt am besten?</h2>
 
         <div class="questList">
           <button
@@ -112,14 +118,14 @@
 
           <button
             class="questCard"
-            data-quest="Limited-Time Loot"
+            data-quest="The cultural approach"
           >
             <span class="questNumber">03</span>
 
             <span>
-              <strong>Limited-Time Loot</strong>
+              <strong>The cultural approach</strong>
               <small>
-                Flohmarkt am Samstag
+                Wir machen auf kultiviert
               </small>
             </span>
           </button>
@@ -139,7 +145,7 @@
 </div>
       </section>
 
-      <!-- Beschreibung der ausgewählten Sidequest -->
+      <!-- Beschreibung der ausgewählten Ideen -->
 <section class="screen" id="detailScreen">
   <p class="eyebrow">SIDEQUEST DETAILS</p>
 
@@ -169,7 +175,7 @@
   </button>
 
   <button class="textButton" id="detailBackButton">
-    ← Andere Sidequest ansehen
+    ← Andere Ideen ansehen
   </button>
 </section>
 
@@ -184,11 +190,10 @@
   >
 </div>
 
-<h2>Wann soll die Sidequest starten?</h2>
+<h2>Wann wollen wir los?</h2>
 
         <p class="description">
-          Wähle ein Datum aus. Die genaue Uhrzeit können wir
-          anschließend gemeinsam festlegen.
+          Wähle dein Wunschdatum aus. Ich schaue dann, ob ich auch Zeit habe. Den endgültigen Termin stimmen wir gemeinsam ab :)
         </p>
 
         <label class="dateLabel" for="dateInput">
@@ -258,8 +263,9 @@
         <p class="acceptedDate" id="acceptedDate"></p>
 
         <p class="description">
-          Hmmm... also... ich weiß nicht wie man sich das an die Email schicken lassen kann. 
-          Alsooooo... könntest du mir bitte einen Screenshot machen & zuschicken? 🥺 👉 👈 
+          Super! Ich freue mich schon sehr :))) <br> <br>
+          ❗ABER: Könntest du mir bitte noch einen Screenshot machen & zuschicken🙏? <br>
+          Wusste nicht wie ich mir deine Antwort zuschicken lassen kann😶 
         </p>
 
         <button class="textButton" id="restartButton">

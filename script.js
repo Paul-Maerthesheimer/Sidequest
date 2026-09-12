@@ -102,16 +102,16 @@ let noClickCount = 0;
 
 const questDetails = {
   "Opening Move":
-    "Kaffee / Tee, Schach, Gespräche & vielleicht Spazieren",
+    "Kaffee / Tee, Gespräche & Spazieren. Das klassische 1. Date",
 
   "New Map Unlocked":
-    "Wir entdecken zsm. eine neue Stadt, die wir beide noch nicht besucht haben. Kann übrigens auch außerhalb von Deutschland liegen",
+    "Wir entdecken zsm. eine neue Stadt, die wir beide noch nicht besucht haben. Kann übrigens auch außerhalb von Deutschland liegen 🇩🇰🇵🇱🇳🇱🇨🇿🇨🇭🇦🇹",
 
-  "Limited-Time Loot":
-  "Wir gehen zsm. auf den Flohmarkt & vielleicht halt einfach noch durch Nürnberg",
+  "The cultural approach":
+  "Wir gehen zusammen entweder ins Theater oder auf ein Konzert & danach / davor (je nach Zeit) irgendwo was essen",
 
   "Secret Option":
-  "Du hast wahrscheinlich nicht so viel Zeit. Verstehe ich. Wenn du möchtest können wir auch gerne mehrere Quests zsm. würfeln, einen anderen Flohmarkt suchen, oder was ganz anderes machen. "
+  "Wir können auch gerne mehrere Quests zusammenwürfeln / was ganz anderes machen. Wir könnten z.B. auch auf einen Flohmarkt gehen :) "
 
     
 };
@@ -120,7 +120,7 @@ const questInformation = {
   "Opening Move": {
     mode: "Chillige Zeit",
     difficulty: "Leicht",
-    location: "Heidenheim / Erlangen / ?"
+    location: "Augsburg / Erlangen / ?"
   },
 
   "New Map Unlocked": {
@@ -128,16 +128,10 @@ const questInformation = {
     difficulty: "Medium - Schwer",
     location: "Europa"
   },
-
-  "Limited-Time Loot": {
-    mode: "Loot-Grabbing",
-    difficulty: "Leicht-Medium",
-    location: "Nürnberg"
-  },
-  "Limited-Time Loot": {
-  mode: "Loot-Grabbing",
+  "The cultural approach": {
+  mode: "Fancy",
   difficulty: "Leicht-Medium",
-  location: "Nürnberg" 
+  location: "Augsburg / Erlangen / ?" 
   },
   "Secret Option": {
   mode: "Mix & Match",
